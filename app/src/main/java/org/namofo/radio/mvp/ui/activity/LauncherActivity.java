@@ -1,4 +1,4 @@
-package org.namofo.radio;
+package org.namofo.radio.mvp.ui.activity;
 
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import android.os.Bundle;
  * @author zhengjiong
  * @version 1.0
  */
-public class MainActivity extends AppCompatActivity {
+public class LauncherActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
