@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -13,7 +15,9 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = false
     }
     buildTypes {
         debug {
@@ -36,20 +40,23 @@ android {
         abortOnError false
     }
 
-    compileOptions {//就算使用 AndroidStuido v3.0, 也需要配置以下参数
+    compileOptions {//就算使用 AndroidStudio v3.0, 也需要配置以下参数
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
-    implementation 'com.android.support:recyclerview-v7:27.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["recyclerview-v7"]
@@ -59,6 +66,8 @@ dependencies {
     implementation rootProject.ext.dependencies["androideventbus"]
     implementation rootProject.ext.dependencies["rxandroid2"]
     implementation rootProject.ext.dependencies["rxpermissions2"]
+    implementation rootProject.ext.dependencies["rxbinding-kotlin"]
+    implementation rootProject.ext.dependencies["rxbinding-recyclerview-kotlin"]
 
     implementation rootProject.ext.dependencies["boxing"]
     implementation rootProject.ext.dependencies["boxing-impl"]
@@ -68,12 +77,30 @@ dependencies {
     implementation rootProject.ext.dependencies["progressmanager"]
     implementation rootProject.ext.dependencies["retrofit-url-manager"]
     implementation rootProject.ext.dependencies["lifecyclemodel"]
-    implementation 'me.jessyan:arms:2.3.1'
+    implementation rootProject.ext.dependencies["agentweb"]
+    implementation rootProject.ext.dependencies["convenientbanner"]
+    implementation rootProject.ext.dependencies["flexibledivider"]
+    implementation rootProject.ext.dependencies["flexbox"]
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+    // tool
+    implementation rootProject.ext.dependencies["arouter"]
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+    implementation rootProject.ext.dependencies["fragmentation-core"]
+    implementation rootProject.ext.dependencies["blankj-utilcode"]
+    implementation 'me.jessyan:arms:2.4.1'
 
     //annotationProcessor 是 AndroidStudio 自带并用来替换 APT
-    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+    /*annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+        exclude module: 'support-annotations'
+    }*/
+
+    //butterknife
+    kapt(rootProject.ext.dependencies["butterknife-compiler"]) {
         exclude module: 'support-annotations'
     }
-    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
+    // dagger2必须依赖jsr250 annotation
+    provided rootProject.ext.dependencies["javax.annotation"]
     implementation rootProject.ext.dependencies["paginate"]
 }

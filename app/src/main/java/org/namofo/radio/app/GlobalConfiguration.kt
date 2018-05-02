@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager
 import com.jess.arms.base.delegate.AppLifecycles
 import com.jess.arms.di.module.GlobalConfigModule
 import com.jess.arms.integration.ConfigModule
+import org.namofo.radio.app.lifecyclesoptions.MyAppLifecycles
+import org.namofo.radio.app.lifecyclesoptions.MyActivityLifecycle
 
 /**
  * Created by zhengjiong
@@ -23,10 +25,12 @@ class GlobalConfiguration : ConfigModule {
 
     override fun injectAppLifecycle(context: Context?, lifecycles: MutableList<AppLifecycles>?) {
         //向Application的生命周期中注入一些自定义逻辑
+        lifecycles!!.add(MyAppLifecycles())
     }
 
     override fun injectActivityLifecycle(context: Context?, lifecycles: MutableList<Application.ActivityLifecycleCallbacks>?) {
         //向Activity的生命周期中注入一些自定义逻辑
+        lifecycles!!.add(MyActivityLifecycle())
     }
 
 }

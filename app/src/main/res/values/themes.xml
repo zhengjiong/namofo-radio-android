@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#F6F6F6</item>
+        <!--<item name="colorPrimaryDark">#F6F6F6</item>-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">#434343</item>
+
+        <item name="navigationIcon">@drawable/ic_arrow_back_black_24dp</item>
+        <item name="android:windowBackground">@color/color_background</item>
+    </style>
+
+
+    <style name="LauncherTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!-- navigation icon color -->
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="navigationIcon">@drawable/ic_arrow_back_black_24dp</item>
+        <item name="background">@color/colorPrimary</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+</resources>
