@@ -4,10 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jakewharton.rxbinding2.view.RxView
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.mvp.IPresenter
+import com.jess.arms.utils.RxLifecycleUtils
+import kotlinx.android.synthetic.main.fragment_radio.*
 import org.namofo.radio.R
+import org.namofo.radio.app.media.NamofoMediaController
+import org.namofo.radio.app.media.RadioPlayer
+import org.namofo.radio.mvp.model.event.RadioControlEvent
 import org.namofo.radio.mvp.ui.base.BaseSupportFragment
+import org.simple.eventbus.Subscriber
 
 /**
  *
@@ -37,7 +44,23 @@ class RadioFragment : BaseSupportFragment<IPresenter>() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
+        RxView.clicks(controlContainer)
+                .compose(RxLifecycleUtils.bindToLifecycle(this))
+                .subscribe({
+                    NamofoMediaController.radioPlayOrStop(context!!)
+                }, {})
+    }
 
+    @Subscriber
+    fun onEventMainThread(event: RadioControlEvent) {
+        when (event.state) {
+            RadioPlayer.RADIO_PLAY_ACTION -> {
+                icPlay.setImageResource(R.drawable.vector_radio_stop)
+            }
+            RadioPlayer.RADIO_STOP_ACTION -> {
+                icPlay.setImageResource(R.drawable.vector_radio_play)
+            }
+        }
     }
 
 }

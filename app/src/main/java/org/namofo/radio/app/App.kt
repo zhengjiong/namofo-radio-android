@@ -8,8 +8,16 @@ import com.jess.arms.base.BaseApplication
  */
 class App : BaseApplication() {
 
+    companion object {
+        @JvmStatic
+        lateinit var app: App
+    }
+
+
     override fun onCreate() {
         super.onCreate()
-
+        app = this@App
     }
+
+
 }

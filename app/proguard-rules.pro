@@ -241,3 +241,5 @@
 -dontwarn android.app.Notification
 
 
+-keep class com.pili.pldroid.player.** { *; }
+-keep class com.qiniu.qplayer.mediaEngine.MediaPlayer{*;}
