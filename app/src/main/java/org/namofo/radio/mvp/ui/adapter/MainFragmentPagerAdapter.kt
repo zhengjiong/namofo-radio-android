@@ -3,8 +3,9 @@ package org.namofo.radio.mvp.ui.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import org.namofo.radio.mvp.ui.fragment.AudioListFragment
 import org.namofo.radio.mvp.ui.fragment.RadioFragment
-import org.namofo.radio.mvp.ui.fragment.RecommendFragment
+import org.namofo.radio.mvp.ui.fragment.RecommendListFragment
 import java.lang.IllegalArgumentException
 
 /**
@@ -20,13 +21,13 @@ class MainFragmentPagerAdapter(private val titles: Array<String>, fm: FragmentMa
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                RecommendFragment.newInstance()
+                RecommendListFragment.newInstance()
             }
             1 -> {
                 RadioFragment.newInstance()
             }
             2 -> {
-                RecommendFragment.newInstance()
+                AudioListFragment.newInstance()
             }
             else -> {
                 throw IllegalArgumentException()

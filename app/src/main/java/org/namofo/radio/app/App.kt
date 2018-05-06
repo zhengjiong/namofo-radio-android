@@ -1,5 +1,6 @@
 package org.namofo.radio.app
 
+import com.blankj.utilcode.util.Utils
 import com.jess.arms.base.BaseApplication
 
 /**
@@ -17,6 +18,7 @@ class App : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         app = this@App
+        Utils.init(this)
     }
 
 
