@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.mvp.IPresenter
-import kotlinx.android.synthetic.main.fragment_recommend.*
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
+import kotlinx.android.synthetic.main.recyclerview_layout.*
 import org.namofo.radio.R
 import org.namofo.radio.mvp.model.entity.RecommendListEntity
 import org.namofo.radio.mvp.ui.adapter.RecommendListAdapter
@@ -37,14 +38,20 @@ class RecommendListFragment : BaseSupportFragment<IPresenter>() {
     }
 
     override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_recommend, container, false)
+        return inflater.inflate(R.layout.recyclerview_layout, container, false)
     }
 
     override fun initData(savedInstanceState: Bundle?) {
         recyclerView.layoutManager = LinearLayoutManager(context)
         val adapter = RecommendListAdapter()
+        recyclerView.addItemDecoration(
+                HorizontalDividerItemDecoration.Builder(view!!.context)
+                        .size(resources.getDimensionPixelSize(R.dimen.padding_8))
+                        .colorResId(R.color.color_background)
+                        .showLastDivider()
+                        .build()
+        )
         recyclerView.adapter = adapter
-
         adapter.setNewData(mutableListOf(
                 RecommendListEntity(RecommendListEntity.TYPE_BANNER),
                 RecommendListEntity(RecommendListEntity.TYPE_GRID_THREE),

@@ -82,6 +82,7 @@ dependencies {
     implementation rootProject.ext.dependencies["flexibledivider"]
     implementation rootProject.ext.dependencies["flexbox"]
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    implementation 'com.yanyusong.y_divideritemdecoration:y_divideritemdecoration:2.0'
 
     // tool
     implementation rootProject.ext.dependencies["arouter"]

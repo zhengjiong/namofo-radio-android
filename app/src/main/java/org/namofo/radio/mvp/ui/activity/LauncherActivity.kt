@@ -31,7 +31,7 @@ class LauncherActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     ARouter.getInstance().build(ARouterPath.MAIN_PAGE).navigation(this)
-                    startActivity(Intent(this@LauncherActivity, MainActivity::class.java))
+                    //startActivity(Intent(this@LauncherActivity, MainActivity::class.java))
                     finish()
                 }, {
                 })
