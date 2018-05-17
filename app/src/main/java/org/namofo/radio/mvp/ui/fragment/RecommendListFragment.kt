@@ -9,8 +9,10 @@ import com.jess.arms.di.component.AppComponent
 import com.jess.arms.mvp.IPresenter
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import kotlinx.android.synthetic.main.recyclerview_layout.*
+import me.yokeyword.fragmentation.ISupportFragment
 import org.namofo.radio.R
 import org.namofo.radio.mvp.model.entity.RecommendListEntity
+import org.namofo.radio.mvp.ui.adapter.GridAlbumAdapter
 import org.namofo.radio.mvp.ui.adapter.RecommendListAdapter
 import org.namofo.radio.mvp.ui.base.BaseSupportFragment
 
@@ -22,7 +24,7 @@ import org.namofo.radio.mvp.ui.base.BaseSupportFragment
  * @version 1.0
  */
 
-class RecommendListFragment : BaseSupportFragment<IPresenter>() {
+class RecommendListFragment : BaseSupportFragment<IPresenter>(), GridAlbumAdapter.OnItemClickListener {
 
     companion object {
         @JvmStatic
@@ -43,7 +45,7 @@ class RecommendListFragment : BaseSupportFragment<IPresenter>() {
 
     override fun initData(savedInstanceState: Bundle?) {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = RecommendListAdapter()
+        val adapter = RecommendListAdapter(this)
         recyclerView.addItemDecoration(
                 HorizontalDividerItemDecoration.Builder(view!!.context)
                         .size(resources.getDimensionPixelSize(R.dimen.padding_8))
@@ -69,5 +71,9 @@ class RecommendListFragment : BaseSupportFragment<IPresenter>() {
                 RecommendListEntity(RecommendListEntity.TYPE_GRID_THREE),
                 RecommendListEntity(RecommendListEntity.TYPE_GRID_THREE)
         ))
+    }
+
+    override fun onItemClick() {
+        (parentFragment as BaseSupportFragment<*>).start(AlbumDetailFragment.newInstance(), ISupportFragment.STANDARD)
     }
 }

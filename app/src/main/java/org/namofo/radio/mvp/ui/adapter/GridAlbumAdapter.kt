@@ -5,8 +5,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.jakewharton.rxbinding2.view.RxView
 import com.jess.arms.http.imageloader.glide.GlideArms
+import io.reactivex.functions.Consumer
 import org.namofo.radio.R
+import java.util.concurrent.TimeUnit
 
 /**
  *
@@ -17,7 +20,11 @@ import org.namofo.radio.R
  */
 
 
-class GridAlbumAdapter(@LayoutRes layoutResId: Int, data: MutableList<String>) : BaseQuickAdapter<String, BaseViewHolder>(layoutResId, data) {
+class GridAlbumAdapter(private val onItemClickListener: GridAlbumAdapter.OnItemClickListener, @LayoutRes layoutResId: Int, data: MutableList<String>) : BaseQuickAdapter<String, BaseViewHolder>(layoutResId, data) {
+
+    interface OnItemClickListener {
+        fun onItemClick()
+    }
 
     override fun convert(helper: BaseViewHolder, item: String?) {
         val icon = helper.getView<ImageView>(R.id.icon)
@@ -28,6 +35,13 @@ class GridAlbumAdapter(@LayoutRes layoutResId: Int, data: MutableList<String>) :
                 .load("https://1919-new-bbc-pro.oss-cn-beijing.aliyuncs.com/487bf1a1-0693-467b-aa50-c1ccf211cdaa?x-oss-process=image/resize,p_100")
                 .centerCrop()
                 .into(icon)
+
+        RxView.clicks(icon).throttleFirst(300L, TimeUnit.MILLISECONDS)
+                .subscribe({
+                    onItemClickListener.onItemClick()
+                }, {
+                })
     }
+
 
 }

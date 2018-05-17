@@ -9,8 +9,10 @@ import com.jess.arms.di.component.AppComponent
 import com.jess.arms.mvp.IPresenter
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import kotlinx.android.synthetic.main.recyclerview_layout.*
+import me.yokeyword.fragmentation.ISupportFragment
 import org.namofo.radio.R
 import org.namofo.radio.mvp.model.entity.RecommendListEntity
+import org.namofo.radio.mvp.ui.adapter.GridAlbumAdapter
 import org.namofo.radio.mvp.ui.adapter.RecommendListAdapter
 import org.namofo.radio.mvp.ui.base.BaseSupportFragment
 
@@ -22,7 +24,7 @@ import org.namofo.radio.mvp.ui.base.BaseSupportFragment
  * @version 1.0
  */
 
-class AudioListFragment : BaseSupportFragment<IPresenter>() {
+class AudioListFragment : BaseSupportFragment<IPresenter>(), GridAlbumAdapter.OnItemClickListener {
 
     companion object {
         @JvmStatic
@@ -49,7 +51,7 @@ class AudioListFragment : BaseSupportFragment<IPresenter>() {
                         .colorResId(R.color.color_background)
                         .build()
         )
-        val recommendListAdapter = RecommendListAdapter()
+        val recommendListAdapter = RecommendListAdapter(this)
         recyclerView.adapter = recommendListAdapter
         recommendListAdapter.setNewData(mutableListOf(
                 RecommendListEntity(RecommendListEntity.TYPE_GRID_THREE),
@@ -63,4 +65,7 @@ class AudioListFragment : BaseSupportFragment<IPresenter>() {
         ))
     }
 
+    override fun onItemClick() {
+        (parentFragment as BaseSupportFragment<*>).start(AlbumDetailFragment.newInstance(), ISupportFragment.STANDARD)
+    }
 }

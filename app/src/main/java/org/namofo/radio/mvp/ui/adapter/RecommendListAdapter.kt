@@ -24,7 +24,7 @@ import org.namofo.radio.utils.GridOffsetsItemDecoration
  */
 
 
-class RecommendListAdapter : BaseMultiItemQuickAdapter<RecommendListEntity, BaseViewHolder>(null) {
+class RecommendListAdapter(private val onItemClickListener: GridAlbumAdapter.OnItemClickListener) : BaseMultiItemQuickAdapter<RecommendListEntity, BaseViewHolder>(null) {
 
     init {
         addItemType(RecommendListEntity.TYPE_BANNER, R.layout.recommend_banner)
@@ -72,7 +72,8 @@ class RecommendListAdapter : BaseMultiItemQuickAdapter<RecommendListEntity, Base
                         }
                     })
                 }
-                recyclerView.adapter = GridAlbumAdapter(R.layout.recommend_grid_item, mutableListOf("", "", "", "", "", ""))
+                val gridAlbumAdapter = GridAlbumAdapter(onItemClickListener, R.layout.recommend_grid_item, mutableListOf("", "", "", "", "", ""))
+                recyclerView.adapter = gridAlbumAdapter
             }
         }
 
