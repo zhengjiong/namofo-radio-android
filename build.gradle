@@ -21,6 +21,7 @@ allprojects {
         maven { url "https://jitpack.io" }//RxCache 需要 jitpack 仓库
         //maven { url "https://maven.google.com" }//Support-library 需要 Google 仓库
         google() //AndroidStudio v3.0 可以使用 google() 替代 maven { url "https://maven.google.com" }
+        maven { url 'https://dl.bintray.com/lizixian/MusicLibrary' }
     }
 }
 
