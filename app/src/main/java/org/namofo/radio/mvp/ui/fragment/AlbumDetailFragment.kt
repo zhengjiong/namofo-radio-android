@@ -43,6 +43,7 @@ class AlbumDetailFragment : BaseSupportFragment<IPresenter>() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
+        toolbar.title = "专辑详情"
         toolbar.setNavigationOnClickListener {
             pop()
         }
