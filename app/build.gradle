@@ -59,6 +59,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["recyclerview-v7"]
+    implementation rootProject.ext.dependencies["support-media-compat"]
     implementation rootProject.ext.dependencies["gson"]
     implementation rootProject.ext.dependencies["cardview-v7"]
     implementation rootProject.ext.dependencies["butterknife"]
@@ -81,7 +82,7 @@ dependencies {
     implementation rootProject.ext.dependencies["flexbox"]
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     implementation 'com.yanyusong.y_divideritemdecoration:y_divideritemdecoration:2.0'
-    implementation 'com.lzx:MusicLibrary:1.3.3'
+    implementation 'com.lzx:MusicLibrary:1.3.4'
     // tool
     implementation rootProject.ext.dependencies["arouter"]
     kapt rootProject.ext.dependencies["arouter-compiler"]

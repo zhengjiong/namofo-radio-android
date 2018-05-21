@@ -13,6 +13,7 @@ class IntentKey {
 
     companion object {
         const val KEY_ITEMS = "KEY_ITEMS"
+        const val KEY_SONG_INFO = "KEY_SONG_INFO"
 
     }
 }

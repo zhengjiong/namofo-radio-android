@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.mvp.IPresenter
+import com.lzx.musiclibrary.aidl.model.SongInfo
+import com.lzx.musiclibrary.manager.MusicManager
 import kotlinx.android.synthetic.main.fragment_album_detail.*
 import me.yokeyword.fragmentation.ISupportFragment
 import org.namofo.radio.R
@@ -53,6 +55,16 @@ class AlbumDetailFragment : BaseSupportFragment<IPresenter>(), AlbumDetailListAd
     }
 
     override fun onItemClick() {
-        start(AudioDetailFragment.newInstance(), ISupportFragment.STANDARD)
+        val currentSongInfo = SongInfo().apply {
+            songId = "123"
+            songUrl = "http://audio.xmcdn.com/group9/M0A/87/05/wKgDYldS66OhILGuAI7YXtdBSSk047.m4a"
+        }
+        //如果正在播放的是当前音乐,并且正在播放
+        if (MusicManager.isCurrMusicIsPlayingMusic(currentSongInfo)) {
+            start(AudioDetailFragment.newInstance(), ISupportFragment.STANDARD)
+            return
+        }
+        val musicManager = MusicManager.get()
+        musicManager.playMusicByInfo(currentSongInfo)
     }
 }

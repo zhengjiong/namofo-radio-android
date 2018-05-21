@@ -5,9 +5,6 @@ import android.content.Intent
 import android.os.IBinder
 import org.namofo.radio.app.media.RadioPlayer.RADIO_PLAY_OR_STOP_ACTION
 import org.namofo.radio.utils.LogUtils
-import com.lzx.musiclibrary.manager.MusicManager
-import com.lzx.musiclibrary.aidl.model.SongInfo
-
 
 
 /**
@@ -36,11 +33,6 @@ class PlayerService : Service() {
             when (this) {
                 RADIO_PLAY_OR_STOP_ACTION -> {
                     RadioPlayer.playOrStop()
-                    /*val songInfo = SongInfo()
-                    songInfo.songId = "123"
-                    songInfo.songUrl = "http://audio.xmcdn.com/group9/M0A/87/05/wKgDYldS66OhILGuAI7YXtdBSSk047.m4a"
-
-                    MusicManager.get().playMusicByInfo(songInfo)*/
                 }
             }
         }
