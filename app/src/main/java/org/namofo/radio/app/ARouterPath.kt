@@ -17,5 +17,9 @@ object ARouterPath {
     //主页
     const val MAIN_PAGE = "/app/main"
 
+    //专辑详情
     const val ALBUM_DETAIL = "/app/album/detail"
+
+    //媒体详情
+    const val AUDIO_DETAIL = "/app/audio/detail"
 }

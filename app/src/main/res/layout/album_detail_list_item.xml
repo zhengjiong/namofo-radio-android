@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
@@ -13,7 +14,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="标题选中状态标题选中状态标题选中状态"
-        android:textColor="@color/color_D0021B"
+        android:textColor="@color/color_4A4A4A"
         android:textSize="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -45,13 +46,14 @@
         app:layout_constraintLeft_toRightOf="@+id/tv_date"
         app:layout_constraintRight_toLeftOf="@+id/tv_duration"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
+    <!--color_9B9B9B-->
 
     <TextView
         android:id="@+id/tv_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:drawableLeft="@drawable/ic_times_of_play"
+        android:drawableLeft="@drawable/ic_time"
         android:drawablePadding="@dimen/margin_8"
         android:text="1234"
         android:textColor="@color/color_9B9B9B"
