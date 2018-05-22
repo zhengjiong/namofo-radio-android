@@ -13,25 +13,24 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleEnabled="false"
+            app:contentScrim="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="@color/white">
+            app:titleEnabled="false">
+
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"
                 android:background="@color/white"
-                android:paddingBottom="20dp"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="20dp"
-                app:layout_collapseParallaxMultiplier="0"
-                app:layout_collapseMode="parallax">
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/ivAlbum"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:background="@color/color_efefef"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -44,6 +43,7 @@
                     android:layout_marginStart="8dp"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
                     android:singleLine="true"
                     android:text="专辑名称"
                     android:textColor="@color/color_000000"
@@ -60,6 +60,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:ellipsize="end"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
                     android:text="简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式。"
                     android:textColor="@color/color_4A4A4A"
                     android:textSize="15dp"
@@ -84,7 +85,24 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ivAlbum"
                     app:layout_constraintTop_toBottomOf="@+id/tvDescription"/>
+
+                <android.support.constraint.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="tvDate,ivAlbum"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/color_background"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/barrier"/>
             </android.support.constraint.ConstraintLayout>
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -96,11 +114,14 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:titleTextAppearance="@style/ToolbarTitle"/>
         </android.support.design.widget.CollapsingToolbarLayout>
+
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </android.support.design.widget.CoordinatorLayout>

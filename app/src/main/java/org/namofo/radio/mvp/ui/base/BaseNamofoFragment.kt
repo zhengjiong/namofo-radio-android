@@ -12,7 +12,7 @@ import org.namofo.radio.utils.DialogUtil
  */
 
 
-abstract class BaseFragment<out P : IPresenter> : BaseSupportFragment<P>() {
+abstract class BaseNamofoFragment<P : IPresenter> : BaseSupportFragment<P>() {
 
     fun error(message: String) {
         DialogUtil.createDialog(context!!, message, DialogInterface.OnClickListener { dialog, which ->
@@ -23,7 +23,7 @@ abstract class BaseFragment<out P : IPresenter> : BaseSupportFragment<P>() {
     fun errorNoCancel(message: String) {
         DialogUtil.createDialog(context!!, message, DialogInterface.OnClickListener { dialog, which ->
             dialog.dismiss()
-            _mActivity.finish()
+            pop()
         })
     }
 }
