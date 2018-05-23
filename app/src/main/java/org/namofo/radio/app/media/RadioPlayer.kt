@@ -2,6 +2,7 @@ package org.namofo.radio.app.media
 
 import android.os.PowerManager
 import com.blankj.utilcode.util.ToastUtils
+import com.lzx.musiclibrary.manager.MusicManager
 import com.pili.pldroid.player.*
 import org.namofo.radio.app.App
 import org.namofo.radio.mvp.model.event.RadioControlEvent
@@ -22,7 +23,7 @@ object RadioPlayer {
 
     const val RADIO_PLAY_ACTION = "org.namofo.radio.play"
     const val RADIO_STOP_ACTION = "org.namofo.radio.stop"
-    const val RADIO_PLAY_OR_STOP_ACTION = "org.namofo.radio.stop"
+    const val RADIO_PLAY_OR_STOP_ACTION = "org.namofo.radio.playorstop"
 
     private var mPLMediaPlayer: PLMediaPlayer? = null
     //private var mIsStopped = false
@@ -126,6 +127,7 @@ object RadioPlayer {
             }
             PLOnInfoListener.MEDIA_INFO_AUDIO_RENDERING_START -> {
                 //第一帧音频已成功播放, 消息的 extra 参数附带首帧时间
+                MusicManager.get().pauseMusic()
             }
         }
     }
@@ -136,6 +138,10 @@ object RadioPlayer {
         } else {
             release()
         }
+    }
+
+    fun stop() {
+        release()
     }
 
     private fun prepare() {

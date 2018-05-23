@@ -13,9 +13,16 @@ import android.content.Intent
 
 object NamofoMediaController {
 
-    fun radioPlayOrStop(context:Context) {
+    fun radioPlayOrStop(context: Context) {
         Intent(context, PlayerService::class.java).apply {
             action = RadioPlayer.RADIO_PLAY_OR_STOP_ACTION
+            context.startService(this)
+        }
+    }
+
+    fun radioStop(context: Context) {
+        Intent(context, PlayerService::class.java).apply {
+            action = RadioPlayer.RADIO_STOP_ACTION
             context.startService(this)
         }
     }

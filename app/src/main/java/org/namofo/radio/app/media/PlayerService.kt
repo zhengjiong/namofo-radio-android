@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import org.namofo.radio.app.media.RadioPlayer.RADIO_PLAY_OR_STOP_ACTION
+import org.namofo.radio.app.media.RadioPlayer.RADIO_STOP_ACTION
 import org.namofo.radio.utils.LogUtils
 
 
@@ -33,6 +34,9 @@ class PlayerService : Service() {
             when (this) {
                 RADIO_PLAY_OR_STOP_ACTION -> {
                     RadioPlayer.playOrStop()
+                }
+                RADIO_STOP_ACTION -> {
+                    RadioPlayer.stop()
                 }
             }
         }
