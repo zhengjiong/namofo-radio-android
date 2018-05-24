@@ -27,13 +27,13 @@ class AlbumDetailListAdapter(private val onItemClickListener: OnItemClickListene
     override fun convert(helper: AlbumDetailListViewHolder, item: String?) {
         //helper.tvTitle.setText(item)
         helper.tvTitle.text = "标题选中状态标题选中状态标题选中状态"
-        if (MusicManager.isCurrMusicIsPlayingMusic(SongInfo().apply {
-                    songId = "123"
-                    //songUrl = "http://audio.xmcdn.com/group9/M0A/87/05/wKgDYldS66OhILGuAI7YXtdBSSk047.m4a"
-                    songUrl = "http://zhangmenshiting.qianqian.com/data2/music/61ae7c5e88d7218b9b78dc776a300764/591406259/591406259.mp3?xcode=3c83dfba9bbdcbbfd1823dca873f4874"
-                    duration = 397 * 1000
-                }))
-            helper.tvTitle.isSelected = helper.adapterPosition % 2 == 0
+        helper.tvTitle.isSelected = MusicManager.isCurrMusicIsPlayingMusic(SongInfo().apply {
+            songId = "123"
+            //songUrl = "http://audio.xmcdn.com/group9/M0A/87/05/wKgDYldS66OhILGuAI7YXtdBSSk047.m4a"
+            songUrl = "http://zhangmenshiting.qianqian.com/data2/music/61ae7c5e88d7218b9b78dc776a300764/591406259/591406259.mp3?xcode=3c83dfba9bbdcbbfd1823dca873f4874"
+            duration = 397 * 1000
+        })
+
 
         RxView.clicks(helper.tvTitle.parent as View)
                 .throttleFirst(300, TimeUnit.MILLISECONDS)

@@ -127,7 +127,9 @@ object RadioPlayer {
             }
             PLOnInfoListener.MEDIA_INFO_AUDIO_RENDERING_START -> {
                 //第一帧音频已成功播放, 消息的 extra 参数附带首帧时间
-                MusicManager.get().pauseMusic()
+
+                //停止录音播放
+                MusicManager.get().reset()
             }
         }
     }

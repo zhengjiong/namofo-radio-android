@@ -9,7 +9,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.mvp.IPresenter
 import com.lzx.musiclibrary.aidl.model.SongInfo
-import com.lzx.musiclibrary.constans.State
 import com.lzx.musiclibrary.manager.MusicManager
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_album_detail.*
@@ -78,11 +77,18 @@ class AlbumDetailFragment : BaseSupportFragment<IPresenter>(), AlbumDetailListAd
         if (MusicManager.isCurrMusicIsPlaying(currentSongInfo)) {
             start(AudioDetailFragment.newInstance(currentSongInfo), ISupportFragment.STANDARD)
             return
-        }else if (MusicManager.isCurrMusicIsPaused(currentSongInfo)) {//当前播放暂停
+        } else if (MusicManager.isCurrMusicIsPaused(currentSongInfo)) {//当前播放暂停
             start(AudioDetailFragment.newInstance(currentSongInfo), ISupportFragment.STANDARD)
             return
         }
 
-        musicManager.playMusicByInfo(currentSongInfo)
+        if (!MusicManager.isPaused() && !MusicManager.isPlaying()) {
+            //重头开始播放
+            musicManager.seekTo(0)
+            musicManager.playMusicByInfo(currentSongInfo, true)
+        } else {
+            musicManager.playMusicByInfo(currentSongInfo)
+        }
+        recyclerView.adapter.notifyDataSetChanged()
     }
 }
